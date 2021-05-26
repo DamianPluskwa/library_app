@@ -1,0 +1,20 @@
+{% extends "library/base.html" %}
+
+
+{% block title%}Lista dostępnych książek{% endblock %}
+
+{% block content%}
+
+{% if books %}
+<ul>
+  {% for book in books %}
+  <li><a href="{% url 'library:detail' book.id %}">{{ book }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Brak dostępnych książek</p>
+{% endif %}
+
+<p><a href="{% url 'library:rented_list' %}">Przeglądaj wypożyczone książki</a></p>
+
+{% endblock %}

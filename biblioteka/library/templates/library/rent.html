@@ -1,0 +1,12 @@
+{% extends "library/base.html" %}
+
+
+{% block title%}Wypożyczono {{ book.book_title}}{% endblock %}
+
+{% block content%}
+
+<p>Wypożyczono książkę: {{ book }}</p>
+
+<p><a href="{% url 'library:list' %}">Powrót do listy dostępnych książek.</a></p>
+
+{% endblock %}
