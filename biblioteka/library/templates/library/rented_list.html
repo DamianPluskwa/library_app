@@ -7,8 +7,8 @@
 
 {% if rented_books %}
 <ul>
-  {% for book in rented_books %}
-  <li><a href="{% url 'library:detail' book.id %}">{{ book }}</a></li>
+  {% for rented_book in rented_books %}
+  <li><a href="{% url 'library:detail' rented_book.book_id %}">{{ rented_book }}</a></li>
   {% endfor %}
 </ul>
 {% else %}
