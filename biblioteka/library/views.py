@@ -1,16 +1,36 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book, Rent
+from .forms import SearchForm
+
 
 # Create your views here.
 
 
 def available_book_list(request):
-    books = Book.objects.filter(book_available=True)
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            # print(form.cleaned_data)
+            if form.cleaned_data["search_category"] == 'title':
+                books = Book.objects.filter(book_title__contains=form.cleaned_data["search_text"], book_available=True)
+            elif form.cleaned_data["search_category"] == 'author':
+                books = Book.objects.filter(book_author__contains=form.cleaned_data["search_text"], book_available=True)
+
+            return render(
+                request,
+                "library/list.html",
+                {"books": books,
+                 "form": form}
+            )
+    else:
+        books = Book.objects.filter(book_available=True)
+        form = SearchForm()
 
     return render(
         request,
         "library/list.html",
-        {"books": books},
+        {"books": books,
+         "form": form}
     )
 
 
