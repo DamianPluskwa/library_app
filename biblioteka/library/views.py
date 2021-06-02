@@ -15,6 +15,9 @@ def available_book_list(request):
                 books = Book.objects.filter(book_title__contains=form.cleaned_data["search_text"], book_available=True)
             elif form.cleaned_data["search_category"] == 'author':
                 books = Book.objects.filter(book_author__contains=form.cleaned_data["search_text"], book_available=True)
+            elif form.cleaned_data["search_category"] == 'category':
+                books = Book.objects.filter(book_category__contains=form.cleaned_data["search_text"],
+                                            book_available=True)
 
             return render(
                 request,
