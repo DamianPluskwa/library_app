@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Book, Rent
-from .forms import SearchForm
+from .models import Book, Rent, Ocena
+from .forms import SearchForm, OcenaForm
 
 
 # Create your views here.
@@ -39,8 +39,6 @@ def available_book_list(request):
 
 def rented_list(request):
     rented_books = Rent.objects.all()
-    for rented in rented_books:
-        print(rented.the_deadline_for_return_has_expired())
     return render(
         request,
         "library/rented_list.html",
@@ -49,12 +47,32 @@ def rented_list(request):
 
 
 def detail(request, book_id):
-    book = get_object_or_404(Book, pk=book_id)
+    if request.method == 'POST':
+        book = get_object_or_404(Book, pk=book_id)
+        form = OcenaForm(request.POST)
+        if form.is_valid():
+            book.ocena_set.create(number=form.cleaned_data["number_value"])
+            user_value = form.cleaned_data["number_value"]
+            book.save()
+
+            return render(
+                request,
+                "library/detail.html",
+                {"book": book,
+                 "form": form,
+                 "user_value": user_value
+                 }
+            )
+    else:
+        book = get_object_or_404(Book, pk=book_id)
+        form = OcenaForm()
 
     return render(
         request,
         "library/detail.html",
-        {"book": book}
+        {"book": book,
+         "form": form
+         }
     )
 
 

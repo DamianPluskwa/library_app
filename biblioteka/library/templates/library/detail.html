@@ -15,6 +15,19 @@
 <p><a href="{% url 'library:return' book.id %}"> Zwróć książkę </a></p>
 {% endif %}
 
+{% if user_value %}
+<p>Oceniłeś książkę na {{ user_value }}</p>
+{% endif %}
+
+<form method="post">
+    <fieldset>
+        <legend>Oceń książke.</legend>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Ocen">
+    </fieldset>
+</form>
+
 <p><a href="{% url 'library:list' %}">Powrót do listy dostępnych książek.</a></p>
 
 <p><a href="{% url 'library:rented_list' %}">Przeglądaj wypożyczone książki</a></p>

@@ -8,3 +8,13 @@ class SearchForm(forms.Form):
         ('author', 'author'),
         ('category', 'category')
     ])
+
+
+class OcenaForm(forms.Form):
+    number_value = forms.ChoiceField(widget=forms.RadioSelect, choices=[
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5')
+    ])

@@ -26,3 +26,11 @@ class Rent(models.Model):
 
     def the_deadline_for_return_has_expired(self) -> bool:
         return self.rent_date < timezone.now() - datetime.timedelta(weeks=2)
+
+
+class Ocena(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    number = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.book} Ocena: {self.number}"
