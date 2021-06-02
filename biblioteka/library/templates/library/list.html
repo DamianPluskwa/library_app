@@ -7,9 +7,9 @@
 <h1>Lista książek do wyporzyczenia</h1>
 
 <form method="post">
-  {% csrf_token %}
   <fieldset>
     <legend>Search:</legend>
+    {% csrf_token %}
     {{ form.search_text }}
     <input type="submit" value="search"><br>
     {{form.search_category}}

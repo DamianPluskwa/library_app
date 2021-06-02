@@ -1,10 +1,10 @@
-from django.db import models
+import datetime
 
-# Create your models here.
+from django.db import models
+from django.utils import timezone
 
 
 class Book(models.Model):
-
     book_title = models.CharField(max_length=200)
     book_author = models.CharField(max_length=200)
     book_category = models.CharField(max_length=200)
@@ -23,3 +23,6 @@ class Rent(models.Model):
 
     def __str__(self):
         return f"{self.book} Wypożyczono {self.rent_date}"
+
+    def the_deadline_for_return_has_expired(self) -> bool:
+        return self.rent_date < timezone.now() - datetime.timedelta(weeks=2)

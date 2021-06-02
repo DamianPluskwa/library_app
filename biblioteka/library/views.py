@@ -39,7 +39,8 @@ def available_book_list(request):
 
 def rented_list(request):
     rented_books = Rent.objects.all()
-
+    for rented in rented_books:
+        print(rented.the_deadline_for_return_has_expired())
     return render(
         request,
         "library/rented_list.html",
