@@ -10,7 +10,7 @@ class SearchForm(forms.Form):
     ])
 
 
-class OcenaForm(forms.Form):
+class RatingForm(forms.Form):
     number_value = forms.ChoiceField(widget=forms.RadioSelect, choices=[
         ('1', '1'),
         ('2', '2'),

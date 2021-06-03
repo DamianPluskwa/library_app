@@ -28,7 +28,7 @@ class Rent(models.Model):
         return self.rent_date < timezone.now() - datetime.timedelta(weeks=2)
 
 
-class Ocena(models.Model):
+class Rating(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     number = models.IntegerField()
 

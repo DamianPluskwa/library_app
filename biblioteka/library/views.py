@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Book, Rent, Ocena
-from .forms import SearchForm, OcenaForm
+from .models import Book, Rent, Rating
+from .forms import SearchForm, RatingForm
 
 
 # Create your views here.
@@ -49,9 +49,9 @@ def rented_list(request):
 def detail(request, book_id):
     if request.method == 'POST':
         book = get_object_or_404(Book, pk=book_id)
-        form = OcenaForm(request.POST)
+        form = RatingForm(request.POST)
         if form.is_valid():
-            book.ocena_set.create(number=form.cleaned_data["number_value"])
+            book.rating_set.create(number=form.cleaned_data["number_value"])
             user_value = form.cleaned_data["number_value"]
             book.save()
 
@@ -65,7 +65,7 @@ def detail(request, book_id):
             )
     else:
         book = get_object_or_404(Book, pk=book_id)
-        form = OcenaForm()
+        form = RatingForm()
 
     return render(
         request,

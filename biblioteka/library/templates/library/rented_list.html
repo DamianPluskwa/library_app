@@ -9,7 +9,7 @@
 <ul>
   {% for rented_book in rented_books %}
   {% if rented_book.the_deadline_for_return_has_expired %}
-  <li><a href="{% url 'library:detail' rented_book.book_id %}" style="color: red">{{ rented_book }} Mineła data zwrotu.
+  <li><a href="{% url 'library:detail' rented_book.book_id %}" style="color: red">{{ rented_book }} Minęła data zwrotu.
   </a></li>
   {% else %}
   <li><a href="{% url 'library:detail' rented_book.book_id %}">{{ rented_book }}</a></li>

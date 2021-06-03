@@ -17,16 +17,18 @@
 
 {% if user_value %}
 <p>Oceniłeś książkę na {{ user_value }}</p>
-{% endif %}
-
+{% else %}
 <form method="post">
     <fieldset>
-        <legend>Oceń książke.</legend>
+        <legend>Oceń książkę.</legend>
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Ocen">
     </fieldset>
 </form>
+{% endif %}
+
+
 
 <p><a href="{% url 'library:list' %}">Powrót do listy dostępnych książek.</a></p>
 
