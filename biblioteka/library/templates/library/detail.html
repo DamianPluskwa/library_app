@@ -12,6 +12,9 @@
 <p><a href="{% url 'library:rent' book.id %}"> Wypożycz książkę </a></p>
 {% else %}
 <p>Książka wypożyczona!</p>
+{% endif %}
+
+{% if rent_books %}
 <p><a href="{% url 'library:return' book.id %}"> Zwróć książkę </a></p>
 {% endif %}
 

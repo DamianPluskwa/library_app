@@ -1,6 +1,7 @@
 import datetime
 
 from django.db import models
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 
 
@@ -10,10 +11,16 @@ class Book(models.Model):
     book_category = models.CharField(max_length=200)
     publication_date = models.IntegerField()
 
-    book_available = models.BooleanField(default=True)
-
     def __str__(self):
         return f"{self.book_title} {self.book_author} {self.book_category} {self.publication_date}"
+
+    @property
+    def book_available(self):
+        book_copies = get_object_or_404(CopiesOfBooks, book=self)
+        if book_copies.available > 0:
+            return True
+        else:
+            return False
 
 
 class Rent(models.Model):
@@ -34,3 +41,12 @@ class Rating(models.Model):
 
     def __str__(self):
         return f"{self.book} Ocena: {self.number}"
+
+
+class CopiesOfBooks(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    copies = models.IntegerField()
+    available = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.book} Copies: {self.copies} Available: {self.available}"
