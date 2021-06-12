@@ -8,11 +8,11 @@
 <p>Szczegółowe informacje</p>
 {{ book }}
 
-{% if book.book_available %}
+{# if book.book_available #}
 <p><a href="{% url 'library:rent' book.id %}"> Wypożycz książkę </a></p>
-{% else %}
+{# else %#}
 <p>Książka wypożyczona!</p>
-{% endif %}
+{# endif #}
 
 {% if rent_books %}
 <p><a href="{% url 'library:return' book.id %}"> Zwróć książkę </a></p>
