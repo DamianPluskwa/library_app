@@ -12,12 +12,23 @@ def available_book_list(request):
         if form.is_valid():
             # print(form.cleaned_data)
             if form.cleaned_data["search_category"] == 'title':
-                books = Book.objects.filter(book_title__contains=form.cleaned_data["search_text"], book_available=True)
+                books_all = Book.objects.filter(book_title__contains=form.cleaned_data["search_text"])
+                books = []
+                for book in books_all:
+                    if book.book_available:
+                        books.append(book)
             elif form.cleaned_data["search_category"] == 'author':
-                books = Book.objects.filter(book_author__contains=form.cleaned_data["search_text"], book_available=True)
+                books_all = Book.objects.filter(book_author__contains=form.cleaned_data["search_text"])
+                books = []
+                for book in books_all:
+                    if book.book_available:
+                        books.append(book)
             elif form.cleaned_data["search_category"] == 'category':
-                books = Book.objects.filter(book_category__contains=form.cleaned_data["search_text"],
-                                            book_available=True)
+                books_all = Book.objects.filter(book_category__contains=form.cleaned_data["search_text"])
+                books = []
+                for book in books_all:
+                    if book.book_available:
+                        books.append(book)
 
             return render(
                 request,

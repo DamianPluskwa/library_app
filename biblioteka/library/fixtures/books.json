@@ -1,0 +1,72 @@
+[
+  {
+    "model": "library.book",
+    "pk": 1,
+    "fields": {
+      "book_title": "Gra o Tron",
+      "book_author": "GRR Martin",
+      "book_category": "Fantasy",
+      "publication_date": 2001
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+      "book_title": "Dzieci z Bulerbyn",
+      "book_author": "Pani Lingren",
+      "book_category": "Obyczajowa",
+      "publication_date": 1981
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+      "book_title": "Harry Potter",
+      "book_author": "JK Rowling",
+      "book_category": "Fantasy",
+      "publication_date": 1999
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 4,
+    "fields": {
+      "book_title": "Mi�o�� w czasach zarazy",
+      "book_author": "Gabriel Garc�a M�rquez",
+      "book_category": "literatura pi�kna",
+      "publication_date": 1985
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 5,
+    "fields": {
+      "book_title": "Gra Endera",
+      "book_author": "Orson Scott Card",
+      "book_category": "science fiction",
+      "publication_date": 1985
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 6,
+    "fields": {
+      "book_title": "Niezno�na lekko�� bytu",
+      "book_author": "Milan Kundera",
+      "book_category": "romans",
+      "publication_date": 1984
+    }
+  },
+  {
+    "model": "library.book",
+    "pk": 7,
+    "fields": {
+      "book_title": "Ogniem i mieczem",
+      "book_author": "Henryk Sienkiewicz",
+      "book_category": "powie�� historyczna",
+      "publication_date": 1884
+    }
+  }
+]
