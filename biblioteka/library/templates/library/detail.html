@@ -8,12 +8,30 @@
 <p>Szczegółowe informacje</p>
 {{ book }}
 
-{% if book.book_available %}
+{# if book.book_available #}
 <p><a href="{% url 'library:rent' book.id %}"> Wypożycz książkę </a></p>
-{% else %}
+{# else %#}
 <p>Książka wypożyczona!</p>
+{# endif #}
+
+{% if rent_books %}
 <p><a href="{% url 'library:return' book.id %}"> Zwróć książkę </a></p>
 {% endif %}
+
+{% if user_value %}
+<p>Oceniłeś książkę na {{ user_value }}</p>
+{% else %}
+<form method="post">
+    <fieldset>
+        <legend>Oceń książkę.</legend>
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Ocen">
+    </fieldset>
+</form>
+{% endif %}
+
+
 
 <p><a href="{% url 'library:list' %}">Powrót do listy dostępnych książek.</a></p>
 
